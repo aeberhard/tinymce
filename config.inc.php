@@ -83,7 +83,13 @@ if ($page === 'medienpool')
 {
   $page = 'mediapool';
 }
+
 $tinymce = rex_request('tinymce', 'string', '');
+if (($tinymce == '') and (isset($_COOKIE['tinymce_mediapool'])))
+{
+  $tinymce = $_COOKIE['tinymce_mediapool'];
+  setcookie('tinymce_mediapool', '');
+}
 
 // OUTPUT_FILTER - TinyMCE-Scripte einbinden, Mediapool + Linkmap anpassen
 if (($REX['REDAXO'] and $REX['ADDON']['tinymce']['backend'] === '1') or (!$REX['REDAXO'] and $REX['ADDON']['tinymce']['frontend'] === '1'))

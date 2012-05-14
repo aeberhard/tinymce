@@ -142,7 +142,7 @@
 				author : 'Andreas Eberhard',
 				authorurl : 'http://andreaseberhard.de',
 				infourl : 'http://rex.andreaseberhard.de/addons/tinymce.html',
-				version : "3.4.9"
+				version : "3.5.0.1"
 			};
 		}
 	});

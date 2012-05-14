@@ -330,9 +330,18 @@ function tinymce_generate_script()
 {
 global $REX;
 
-  ob_end_clean();
-  ob_end_clean();
+  while (ob_get_level())
+    ob_end_clean();
+
+  header_remove();
+  if (function_exists('ob_gzhandler'))
+  {
+    ob_start('ob_gzhandler');
+  }  
+
   header("Content-type: application/javascript");
+  header('Cache-Control: public');
+  header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT'); // 7 days 
 
   echo '/**
  * Addon TinyMCE Version '.$REX['ADDON']['version']['tinymce'].'
@@ -414,8 +423,10 @@ function tinymce_generate_mediascript()
 {
 global $REX;
 
-  ob_end_clean();
-  ob_end_clean();
+  while (ob_get_level())
+    ob_end_clean();
+
+  header_remove();
   header("Content-type: application/javascript");
 
   echo '/**
@@ -445,8 +456,10 @@ function tinymce_generate_linkscript()
 {
 global $REX;
 
-  ob_end_clean();
-  ob_end_clean();
+  while (ob_get_level())
+    ob_end_clean();
+
+  header_remove();
   header("Content-type: application/javascript");
 
   echo '/**
@@ -476,8 +489,10 @@ function tinymce_generate_css()
 {
 global $REX;
 
-  ob_end_clean();
-  ob_end_clean();
+  while (ob_get_level())
+    ob_end_clean();
+
+  header_remove();
 
   $css = '';
   $table = $REX['TABLE_PREFIX'] . 'tinymce_profiles';
@@ -490,6 +505,7 @@ global $REX;
   {
     $css = $sql->getValue('configuration');
   }
+  
   header("Content-type: text/css");
   echo $css;
   die;
@@ -510,7 +526,7 @@ function tinymce_generate_image()
   $file = $REX['MEDIAFOLDER'] . '/' . $tinymceimg;
   if (file_exists($file))
   {
-    $lastModified = gmdate('r' );
+    $lastModified = gmdate('r');
 
     $file_extension = strtolower(substr(strrchr($tinymceimg, '.'), 1));
     switch ($file_extension)
@@ -521,7 +537,13 @@ function tinymce_generate_image()
       case "jpg": $ctype = "image/jpg"; break;
     }
 
+    while (ob_get_level())
+      ob_end_clean();
+
+    header_remove();
+
     header('Content-Type: ' . $ctype);
+    header('Content-Disposition: inline; filename="'. $tinymceimg .'"');
     header('Last-Modified: ' . $lastModified);
     //header('Content-Length: ' . $length);
 
@@ -635,6 +657,7 @@ global $REX;
     echo $scriptoutput;
     die;
   }
+  setcookie('tinymce_mediapool', 'true');
 }
 } // End function_exists
 

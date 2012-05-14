@@ -1,4 +1,11 @@
-Addon: TinyMCE Version 2.0
+Addon: TinyMCE Version 2.1
+
+Version 2.1 (2012-05-14)
+  - Update TinyMCE auf Version 3.5.0.1
+  - Bugfix doppelte ob_end_clean()
+  - nach Upload im MP funktionierte "Datei übernehmen" nicht
+  - Header mit Dateiname, bei "speichern unter" wird jetzt der Dateiname übernommen
+  - Beispielkonfiguration mit Tabellen-Buttons aufgenommen
 
 Version 2.0 (2012-03-09)
   - Addon komplett neu geschrieben
