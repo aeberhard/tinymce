@@ -1,4 +1,7 @@
-Addon: TinyMCE Version 2.1
+Addon: TinyMCE Version 2.1.1
+
+Version 2.1.1 (2012-05-22)
+  - Versionsinfo angepasst
 
 Version 2.1 (2012-05-14)
   - Update TinyMCE auf Version 3.5.0.1
