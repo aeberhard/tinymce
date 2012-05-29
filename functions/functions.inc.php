@@ -333,7 +333,10 @@ global $REX;
   while (ob_get_level())
     ob_end_clean();
 
-  header_remove();
+  if (function_exists('header_remove'))
+  {  
+    header_remove();
+  }
   if (function_exists('ob_gzhandler'))
   {
     ob_start('ob_gzhandler');
@@ -426,7 +429,10 @@ global $REX;
   while (ob_get_level())
     ob_end_clean();
 
-  header_remove();
+  if (function_exists('header_remove'))
+  {  
+    header_remove();
+  }
   header("Content-type: application/javascript");
 
   echo '/**
@@ -459,7 +465,10 @@ global $REX;
   while (ob_get_level())
     ob_end_clean();
 
-  header_remove();
+  if (function_exists('header_remove'))
+  {  
+    header_remove();
+  }
   header("Content-type: application/javascript");
 
   echo '/**
@@ -492,7 +501,10 @@ global $REX;
   while (ob_get_level())
     ob_end_clean();
 
-  header_remove();
+  if (function_exists('header_remove'))
+  {  
+    header_remove();
+  }
 
   $css = '';
   $table = $REX['TABLE_PREFIX'] . 'tinymce_profiles';
@@ -540,7 +552,10 @@ function tinymce_generate_image()
     while (ob_get_level())
       ob_end_clean();
 
-    header_remove();
+    if (function_exists('header_remove'))
+    {  
+      header_remove();
+    }
 
     header('Content-Type: ' . $ctype);
     header('Content-Disposition: inline; filename="'. $tinymceimg .'"');
