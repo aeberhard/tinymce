@@ -12,10 +12,10 @@
 
 $mypage = 'tinymce';
 
-// Versionsnummer, auch in den Language-Files ändern
-$REX['ADDON']['version'][$mypage] = '2.0.0';
+// Versionsnummer, auch in den Language-Files ï¿½ndern
+$REX['ADDON']['version'][$mypage] = '2.1.1';
 
-// Fix für REDAXO < 4.2.x
+// Fix fï¿½r REDAXO < 4.2.x
 if (!isset($REX['FRONTEND_FILE'])) 
 {
   $REX['FRONTEND_FILE'] = 'index.php';
@@ -30,7 +30,7 @@ if ($REX['REDAXO'])
     $I18N = new i18n($REX['LANG'],$REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/lang/');
   }
   
-  // I18N, Addon-Titel für die Navigation
+  // I18N, Addon-Titel fï¿½r die Navigation
   if (isset($I18N) && is_object($I18N))
   {
     if ($REX['VERSION'] . $REX['SUBVERSION'] < '42')
@@ -97,27 +97,27 @@ if (($REX['REDAXO'] and $REX['ADDON']['tinymce']['backend'] === '1') or (!$REX['
   rex_register_extension('OUTPUT_FILTER', 'tinymce_output_filter');
 }
 
-// Extension-Point für Hinzufügen+übernehmen
+// Extension-Point fï¿½r Hinzufï¿½gen+ï¿½bernehmen
 if ((($page === 'mediapool') or ($page === 'linkmap')) and ( $tinymce === 'true'))
 {
   rex_register_extension('OUTPUT_FILTER', 'tinymce_opf_media_linkmap');
   rex_register_extension('MEDIA_ADDED', 'tinymce_media_added');
 }
 
-// JavaScript für Backend und Frontend generieren
+// JavaScript fï¿½r Backend und Frontend generieren
 // Einbindung TinyMCE mit verschiedenen Profilen
 if (rex_request('tinymceinit', 'string', '') === 'true')
 {
   tinymce_generate_script();
 }
 
-// JavaScript für Mediapool generieren
+// JavaScript fï¿½r Mediapool generieren
 if (rex_request('tinymcemedia', 'string', '') === 'true')
 {
   tinymce_generate_mediascript();
 }
 
-// JavaScript für Linkmap generieren
+// JavaScript fï¿½r Linkmap generieren
 if (rex_request('tinymcelink', 'string', '') === 'true')
 {
   tinymce_generate_linkscript();
