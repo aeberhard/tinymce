@@ -12,10 +12,10 @@
 
 $mypage = 'tinymce';
 
-// Versionsnummer, auch in den Language-Files �ndern
+// Versionsnummer, auch in den Language-Files ändern
 $REX['ADDON']['version'][$mypage] = '2.1.1';
 
-// Fix f�r REDAXO < 4.2.x
+// Fix für REDAXO < 4.2.x
 if (!isset($REX['FRONTEND_FILE'])) 
 {
   $REX['FRONTEND_FILE'] = 'index.php';
@@ -30,7 +30,7 @@ if ($REX['REDAXO'])
     $I18N = new i18n($REX['LANG'],$REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/lang/');
   }
   
-  // I18N, Addon-Titel f�r die Navigation
+  // I18N, Addon-Titel für die Navigation
   if (isset($I18N) && is_object($I18N))
   {
     if ($REX['VERSION'] . $REX['SUBVERSION'] < '42')
@@ -50,7 +50,6 @@ if ($REX['REDAXO'])
   // Addoninfos, Perms usw.
   $REX['ADDON']['perm'][$mypage] = $mypage.'[]';
 
-  $REX['ADDON']['version'][$mypage] = $I18N->msg('tinymce_version');
   $REX['ADDON']['author'][$mypage] = 'Andreas Eberhard';
   $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
   $REX['PERM'][] = $mypage.'[]';
@@ -97,27 +96,27 @@ if (($REX['REDAXO'] and $REX['ADDON']['tinymce']['backend'] === '1') or (!$REX['
   rex_register_extension('OUTPUT_FILTER', 'tinymce_output_filter');
 }
 
-// Extension-Point f�r Hinzuf�gen+�bernehmen
+// Extension-Point für Hinzufügen+übernehmen
 if ((($page === 'mediapool') or ($page === 'linkmap')) and ( $tinymce === 'true'))
 {
   rex_register_extension('OUTPUT_FILTER', 'tinymce_opf_media_linkmap');
   rex_register_extension('MEDIA_ADDED', 'tinymce_media_added');
 }
 
-// JavaScript f�r Backend und Frontend generieren
+// JavaScript für Backend und Frontend generieren
 // Einbindung TinyMCE mit verschiedenen Profilen
 if (rex_request('tinymceinit', 'string', '') === 'true')
 {
   tinymce_generate_script();
 }
 
-// JavaScript f�r Mediapool generieren
+// JavaScript für Mediapool generieren
 if (rex_request('tinymcemedia', 'string', '') === 'true')
 {
   tinymce_generate_mediascript();
 }
 
-// JavaScript f�r Linkmap generieren
+// JavaScript für Linkmap generieren
 if (rex_request('tinymcelink', 'string', '') === 'true')
 {
   tinymce_generate_linkscript();
