@@ -2,22 +2,22 @@ Addon: TinyMCE Version 2.1.1
 
 Version 2.1.1 (2012-05-29)
   - Versionsinfo angepasst
-  - Bugfix für PHP < 5.3, wg. function header_remove()
+  - Bugfix fÃ¼r PHP < 5.3, wg. function header_remove()
 
 Version 2.1 (2012-05-14)
   - Update TinyMCE auf Version 3.5.0.1
   - Bugfix doppelte ob_end_clean()
-  - nach Upload im MP funktionierte "Datei übernehmen" nicht
-  - Header mit Dateiname, bei "speichern unter" wird jetzt der Dateiname übernommen
+  - nach Upload im MP funktionierte "Datei Ã¼bernehmen" nicht
+  - Header mit Dateiname, bei "speichern unter" wird jetzt der Dateiname Ã¼bernommen
   - Beispielkonfiguration mit Tabellen-Buttons aufgenommen
 
 Version 2.0 (2012-03-09)
   - Addon komplett neu geschrieben
   - Update TinyMCE auf Version 3.4.9
-  - Einbindung TinyMCE im Backend und Frontend möglich
+  - Einbindung TinyMCE im Backend und Frontend mÃ¶glich
   - verschiedene Konfigurationen werden jetzt in der DB gespeichert
   - keine Tiny-Klasse mehr
-  - lauffähig ab Redaxo 4.0
+  - lauffÃ¤hig ab Redaxo 4.0
 
 Version 1.6.1.1 (2011-07-15) - Tobias Krais
   - Opera Bug im TinyMCE Redaxo Plugin behoben
@@ -26,23 +26,23 @@ Version 1.6.1 (2011-07-08) - Tobias Krais
   - Update TinyMCE auf Version 3.4.3.2
   - Deutsches und Englisches Sprachpaket aktualisiert
   - Emoticons und Media als Standard hinzugeuegt
-  - Anpassungen für REDAXO 4.2.x
+  - Anpassungen fÃ¼r REDAXO 4.2.x
 
 Version 1.6 (2010-03-29)
   - Update TinyMCE auf Version 3.3.2
-  - Bugfix: Init-Script wird jetzt über die index.php ausgeliefert, tiny_mce_init.php entfällt da oft
+  - Bugfix: Init-Script wird jetzt Ã¼ber die index.php ausgeliefert, tiny_mce_init.php entfÃ¤llt da oft
     Rechteprobleme auftraten
-  - Medienpool-Popup überarbeitet, Datei übernehmen funktioniert jetzt auch nach Uploads	
-  - Medienpool übernimmt jetzt auch den Medien-Titel in das Tiny-Popup
-  - Bugfix: korrekter Pfad für content.css, Anzeige Dateiname bei CSS-Editor
-  - Addon-Konfiguration angepasst, neuer Parameter für individuelle Tiny Konfiguration
-    Optionen für Smileys, Media und Syntaxhighlighter entfernt
+  - Medienpool-Popup Ã¼berarbeitet, Datei Ã¼bernehmen funktioniert jetzt auch nach Uploads	
+  - Medienpool Ã¼bernimmt jetzt auch den Medien-Titel in das Tiny-Popup
+  - Bugfix: korrekter Pfad fÃ¼r content.css, Anzeige Dateiname bei CSS-Editor
+  - Addon-Konfiguration angepasst, neuer Parameter fÃ¼r individuelle Tiny Konfiguration
+    Optionen fÃ¼r Smileys, Media und Syntaxhighlighter entfernt
   - Smileys und Media in Standardbuttons aufgenommen
-  - Anpassung redaxo-Plugin für Tiny
+  - Anpassung redaxo-Plugin fÃ¼r Tiny
   - Syntaxhighlighter entfernt
   - JavaScript-Sourcen entfernt
   - abschliessende ?> entfernt
-  - Anpassung für REDAXO 4.1.x, 4.0.x, 3.2.3
+  - Anpassung fÃ¼r REDAXO 4.1.x, 4.0.x, 3.2.3
 
   TODO:
   * Security-Patch, siehe http://blog.webvariants.de/security-fix-fuer-redaxos-tinymce-addon
@@ -53,7 +53,7 @@ Version 1.5 (2009-03-25)
   - Update TinyMCE auf Version 3.2.2.1
   - Anpassung an neues Backend-Style
   - Klasse pclzip entfernt, TinyMCE Source wird jetzt in das files-Verzeichnis kopoert, kein entpacken mehr notwendig
-  - .htaccess im Verzeichnis addons/tinymce/files/ hebt den Verzeichnisschutz auf für REDAXO < 4.2
+  - .htaccess im Verzeichnis addons/tinymce/files/ hebt den Verzeichnisschutz auf fÃ¼r REDAXO < 4.2
   - Konfiguration des Addons, Aktivierung, Standardsprache, Theme + Skin usw.
   - Editiermoeglichkeit des Stylesheets fuer den WYSIWYG-Editor/Vorschau
 

@@ -15,7 +15,7 @@ $func = rex_request('func', 'string', '');
 $entry_id = rex_request('entry_id', 'int', -1);
 $fieldSet = $I18N->Msg('tinymce_fieldset');
 
-// Hinzufügen / Bearbeiten
+// HinzufÃ¼gen / Bearbeiten
 if ($func == 'add' || $func == 'edit')
 {
 
@@ -52,7 +52,7 @@ if ($func == 'add' || $func == 'edit')
 }
 
 
-// Löschen
+// LÃ¶schen
 if ($func == 'delete')
 {
   if ($entry_id==2)

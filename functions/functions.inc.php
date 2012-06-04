@@ -22,7 +22,7 @@ if (!isset($REX['DIRPERM']))
 
 
 /**
- * für REDAXO 4.0.x
+ * fÃ¼r REDAXO 4.0.x
  */
 if (!function_exists('rex_info'))
 {
@@ -35,7 +35,7 @@ function rex_info($msg)
 
 
 /**
- * für REDAXO 4.0.x
+ * fÃ¼r REDAXO 4.0.x
  */
 if (!function_exists('rex_get_file_contents'))
 {
@@ -47,7 +47,7 @@ if (!function_exists('rex_get_file_contents'))
 
 
 /**
- * für REDAXO 4.0.x
+ * fÃ¼r REDAXO 4.0.x
  */
 if (!function_exists('rex_put_file_contents'))
 {
@@ -64,7 +64,7 @@ global $REX;
 
 
 /**
- * für REDAXO 4.0.x
+ * fÃ¼r REDAXO 4.0.x
  */
 if (!function_exists('rex_replace_dynamic_contents'))
 {
@@ -82,7 +82,7 @@ function rex_replace_dynamic_contents($path, $content)
 
 
 /**
- * für REDAXO 4.1.x
+ * fÃ¼r REDAXO 4.1.x
  */
 if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
 {
@@ -159,7 +159,7 @@ if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
 
 
 /**
- * String Highlight für ältere REDAXO-Versionen
+ * String Highlight fÃ¼r Ã¤ltere REDAXO-Versionen
  */ 
 if (!function_exists('rex_highlight_string'))
 {
@@ -176,7 +176,7 @@ function rex_highlight_string($string, $return = false)
 
 
 /**
- * Schreibberechtigung prüfen
+ * Schreibberechtigung prÃ¼fen
  */
 if (!function_exists('tinymce_is_writable'))
 {
@@ -200,7 +200,7 @@ function tinymce_is_writable($path)
 
 
 /**
- * prüfen exclude Page/Subpage
+ * prÃ¼fen exclude Page/Subpage
  */
 if (!function_exists('tinymce_exclude_page_subpage'))
 {
@@ -229,7 +229,7 @@ global $REX;
     if (in_array(rex_request('subpage', 'string', ''), $exc))
       return true;
 
-    // evtl. vorhandener String in Url auch übergehen
+    // evtl. vorhandener String in Url auch Ã¼bergehen
     foreach ($exc as $key => $val)
     {
       if (strstr($_SERVER['REQUEST_URI'], $val))
@@ -245,7 +245,7 @@ global $REX;
 
 
 /**
- * prüfen exclude Kategorie/Artikel-Id
+ * prÃ¼fen exclude Kategorie/Artikel-Id
  */
 if (!function_exists('tinymce_exclude_cat_art'))
 {
@@ -293,7 +293,7 @@ function tinymce_output_filter($content)
   // Wenn keine Textarea mit Klasse tinyMCEEditor vorhanden ist dann nichts machen
   if (strpos($content['subject'], 'tinyMCEEditor') === false) return $content['subject'];
 
-  // Exclude für Backend und Frontend prüfen
+  // Exclude fÃ¼r Backend und Frontend prÃ¼fen
   if ($REX['REDAXO'] and tinymce_exclude_page_subpage()) return $content['subject'];
   if (!$REX['REDAXO'] and tinymce_exclude_cat_art()) return $content['subject'];
 
@@ -418,7 +418,7 @@ jQuery(document).ready(function($) {';
 
 
 /**
- * TinyMCE Script für Mediapool ausgeben
+ * TinyMCE Script fÃ¼r Mediapool ausgeben
  */
 if (!function_exists('tinymce_generate_mediascript'))
 {
@@ -454,7 +454,7 @@ global $REX;
 
 
 /**
- * TinyMCE Script für Linkmap ausgeben
+ * TinyMCE Script fÃ¼r Linkmap ausgeben
  */
 if (!function_exists('tinymce_generate_linkscript'))
 {
@@ -589,14 +589,14 @@ function tinymce_generate_image()
 
 
 /**
- * Output-Filter für Medienpool und Linkmap
+ * Output-Filter fÃ¼r Medienpool und Linkmap
  */
 if (!function_exists('tinymce_opf_media_linkmap'))
 {
 function tinymce_opf_media_linkmap($params)
 {
 global $REX;
-// Hinzufügen und übernehmen, Close Popup
+// HinzufÃ¼gen und Ã¼bernehmen, Close Popup
 
   $content = $params['subject'];
   $page = rex_request('page', 'string');
@@ -650,7 +650,7 @@ global $REX;
 
 
 /**
- * Extension-Point für Medienpool Button "Hinzufügen und übernehmen"
+ * Extension-Point fÃ¼r Medienpool Button "HinzufÃ¼gen und Ã¼bernehmen"
  */
 if (!function_exists('tinymce_media_added'))
 {
