@@ -86,75 +86,75 @@ function rex_replace_dynamic_contents($path, $content)
  */
 if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
 {
-	function rex_copyDir($srcdir, $dstdir, $startdir = "")
-	{
-	  global $REX;
-	  
-	  $debug = FALSE;
-	  $state = TRUE;
-	  
-	  if(!is_dir($dstdir))
-	  {
-		$dir = '';
-		foreach(explode(DIRECTORY_SEPARATOR, $dstdir) as $dirPart)
-		{
-		  $dir .= $dirPart . DIRECTORY_SEPARATOR;
-		  if(strpos($startdir,$dir) !== 0 && !is_dir($dir))
-		  {
-			if($debug)
-			  echo "Create dir '$dir'<br />\n";
-			  
-			mkdir($dir);
-			chmod($dir, $REX['DIRPERM']);
-		  }
-		}
-	  }
-	  
-	  if($curdir = opendir($srcdir))
-	  {
-		while($file = readdir($curdir))
-		{
-		  if($file != '.' && $file != '..' && $file != '.svn')
-		  {
-			$srcfile = $srcdir . DIRECTORY_SEPARATOR . $file;    
-			$dstfile = $dstdir . DIRECTORY_SEPARATOR . $file;    
-			if(is_file($srcfile))
-			{
-			  $isNewer = TRUE;
-			  if(is_file($dstfile))
-			  {
-				$isNewer = (filemtime($srcfile) - filemtime($dstfile)) > 0;
-			  }
-				
-			  if($isNewer)
-			  {
-				if($debug)
-				  echo "Copying '$srcfile' to '$dstfile'...";
-				if(copy($srcfile, $dstfile))
-				{
-				  touch($dstfile, filemtime($srcfile));
-				  chmod($dstfile, $REX['FILEPERM']);
-				  if($debug)
-					echo "OK<br />\n";
-				}
-				else
-				{
-				  if($debug)
-				   echo "Error: File '$srcfile' could not be copied!<br />\n";
-				  return FALSE;
-				}
-			  }
-			}
-			else if(is_dir($srcfile))
-			{
-			  $state = rex_copyDir($srcfile, $dstfile, $startdir) && $state;
-			}
-		  }
-		}
-		closedir($curdir);
-	  }
-	  return $state;
-	}
+  function rex_copyDir($srcdir, $dstdir, $startdir = "")
+  {
+    global $REX;
+    
+    $debug = FALSE;
+    $state = TRUE;
+    
+    if(!is_dir($dstdir))
+    {
+    $dir = '';
+    foreach(explode(DIRECTORY_SEPARATOR, $dstdir) as $dirPart)
+    {
+      $dir .= $dirPart . DIRECTORY_SEPARATOR;
+      if(strpos($startdir,$dir) !== 0 && !is_dir($dir))
+      {
+      if($debug)
+        echo "Create dir '$dir'<br />\n";
+        
+      mkdir($dir);
+      chmod($dir, $REX['DIRPERM']);
+      }
+    }
+    }
+    
+    if($curdir = opendir($srcdir))
+    {
+    while($file = readdir($curdir))
+    {
+      if($file != '.' && $file != '..' && $file != '.svn')
+      {
+      $srcfile = $srcdir . DIRECTORY_SEPARATOR . $file;    
+      $dstfile = $dstdir . DIRECTORY_SEPARATOR . $file;    
+      if(is_file($srcfile))
+      {
+        $isNewer = TRUE;
+        if(is_file($dstfile))
+        {
+        $isNewer = (filemtime($srcfile) - filemtime($dstfile)) > 0;
+        }
+        
+        if($isNewer)
+        {
+        if($debug)
+          echo "Copying '$srcfile' to '$dstfile'...";
+        if(copy($srcfile, $dstfile))
+        {
+          touch($dstfile, filemtime($srcfile));
+          chmod($dstfile, $REX['FILEPERM']);
+          if($debug)
+          echo "OK<br />\n";
+        }
+        else
+        {
+          if($debug)
+           echo "Error: File '$srcfile' could not be copied!<br />\n";
+          return FALSE;
+        }
+        }
+      }
+      else if(is_dir($srcfile))
+      {
+        $state = rex_copyDir($srcfile, $dstfile, $startdir) && $state;
+      }
+      }
+    }
+    closedir($curdir);
+    }
+    return $state;
+  }
 } // End function_exists
 
 
@@ -383,7 +383,7 @@ jQuery(document).ready(function($) {';
         $configout[strlen($configout)-1] = ' ';
       }
 
-		$configout = tinymce_replace_vars($configout);
+    $configout = tinymce_replace_vars($configout);
 
       if ($sql->getValue('id') === '2') // default for class="tinyMCEEditor"
       {
@@ -530,61 +530,54 @@ global $REX;
  */
 if (!function_exists('tinymce_generate_image'))
 {
-function tinymce_generate_image()
-{
-  global $REX;
-
-  $tinymceimg = rex_request('tinymceimg', 'string', '');
-  $file = $REX['MEDIAFOLDER'] . '/' . $tinymceimg;
-  if (file_exists($file))
+  function tinymce_generate_image()
   {
-    $lastModified = gmdate('r');
+    global $REX;
 
-    $file_extension = strtolower(substr(strrchr($tinymceimg, '.'), 1));
-    switch ($file_extension)
+    $tinymceimg = rex_request('tinymceimg', 'string', '');
+    $file = $REX['MEDIAFOLDER'] . '/' . $tinymceimg;
+
+    if (file_exists($file))
     {
-      case "gif": $ctype = "image/gif"; break;
-      case "png": $ctype = "image/png"; break;
-      case "jpeg": $ctype = "image/jpg"; break;
-      case "jpg": $ctype = "image/jpg"; break;
+
+      $last_modified_time = filemtime($file);
+      $etag = md5_file($file);
+      $expires = 60*60*24*14;
+
+      $file_extension = strtolower(substr(strrchr($tinymceimg, '.'), 1));
+      switch ($file_extension)
+      {
+        case "gif": $ctype = "image/gif"; break;
+        case "png": $ctype = "image/png"; break;
+        case "jpeg": $ctype = "image/jpg"; break;
+        case "jpg": $ctype = "image/jpg"; break;
+      }
+
+      while (ob_get_level())
+        ob_end_clean();
+
+      if (function_exists('header_remove'))
+      {  
+        header_remove();
+      }
+
+      header("Last-Modified: ".gmdate("D, d M Y H:i:s", $last_modified_time)." GMT");
+      header("Etag: \"$etag\"");
+      header("Pragma: public");
+      header("Cache-Control: maxage=".$expires);
+      header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
+
+      if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || @trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) {
+          header("HTTP/1.1 304 Not Modified");
+          exit;
+      } else {
+          header("Content-type: " . $ctype);
+          header("Content-Length: " . filesize($file));
+          readfile($file);
+          exit;
+      }
     }
-
-    while (ob_get_level())
-      ob_end_clean();
-
-    if (function_exists('header_remove'))
-    {  
-      header_remove();
-    }
-
-    header('Content-Type: ' . $ctype);
-    header('Content-Disposition: inline; filename="'. $tinymceimg .'"');
-    header('Last-Modified: ' . $lastModified);
-    //header('Content-Length: ' . $length);
-
-    // caching clientseitig/proxyseitig erlauben
-    header('Cache-Control: public');
-    header("Pragma: public");
-    header("Expires: 0");
-
-    if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == $lastModified)
-    {
-      header('HTTP/1.1 304 Not Modified');
-      exit();
-    }
-
-    readfile($file);
   }
-  else
-  {
-    header('Cache-Control: false');
-    header('Content-Type: image/');
-    header('Content-Disposition: inline; filename=""');
-    header('HTTP/1.0 404 Not Found');
-    header("Status: 404 Not Found");
-  }
-  die;
-}
 } // End function_exists
 
 
@@ -620,9 +613,9 @@ global $REX;
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="tinymce" value="true" /> <!-- inserted by TinyMCE -->' . "\n";
     $search[3] = 'page=' . $page;
-    $replace[3] = 'page=' . $page . '&amp;tinymce=true';	
+    $replace[3] = 'page=' . $page . '&amp;tinymce=true';  
     $search[4] = 'page=medienpool';
-    $replace[4] = 'page=medienpool&amp;tinymce=true';	
+    $replace[4] = 'page=medienpool&amp;tinymce=true'; 
     $search[5] = '<input type="hidden" name="page" value="medienpool" />';
     $replace[5] = $search[5] . "\n\n" . '<input type="hidden" name="tinymce" value="true" /> <!-- inserted by TinyMCE -->' . "\n";
   }
@@ -639,7 +632,7 @@ global $REX;
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="tinymce" value="true" /> <!-- inserted by TinyMCE -->' . "\n";
     $search[3] = 'page=' . $page;
-    $replace[3] = 'page=' . $page . '&amp;tinymce=true';	
+    $replace[3] = 'page=' . $page . '&amp;tinymce=true';  
   }
 
   // Alles ersetzen
