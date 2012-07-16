@@ -86,75 +86,75 @@ function rex_replace_dynamic_contents($path, $content)
  */
 if ($REX['REDAXO'] and !function_exists('rex_copyDir'))
 {
-	function rex_copyDir($srcdir, $dstdir, $startdir = "")
-	{
-	  global $REX;
-	  
-	  $debug = FALSE;
-	  $state = TRUE;
-	  
-	  if(!is_dir($dstdir))
-	  {
-		$dir = '';
-		foreach(explode(DIRECTORY_SEPARATOR, $dstdir) as $dirPart)
-		{
-		  $dir .= $dirPart . DIRECTORY_SEPARATOR;
-		  if(strpos($startdir,$dir) !== 0 && !is_dir($dir))
-		  {
-			if($debug)
-			  echo "Create dir '$dir'<br />\n";
-			  
-			mkdir($dir);
-			chmod($dir, $REX['DIRPERM']);
-		  }
-		}
-	  }
-	  
-	  if($curdir = opendir($srcdir))
-	  {
-		while($file = readdir($curdir))
-		{
-		  if($file != '.' && $file != '..' && $file != '.svn')
-		  {
-			$srcfile = $srcdir . DIRECTORY_SEPARATOR . $file;    
-			$dstfile = $dstdir . DIRECTORY_SEPARATOR . $file;    
-			if(is_file($srcfile))
-			{
-			  $isNewer = TRUE;
-			  if(is_file($dstfile))
-			  {
-				$isNewer = (filemtime($srcfile) - filemtime($dstfile)) > 0;
-			  }
-				
-			  if($isNewer)
-			  {
-				if($debug)
-				  echo "Copying '$srcfile' to '$dstfile'...";
-				if(copy($srcfile, $dstfile))
-				{
-				  touch($dstfile, filemtime($srcfile));
-				  chmod($dstfile, $REX['FILEPERM']);
-				  if($debug)
-					echo "OK<br />\n";
-				}
-				else
-				{
-				  if($debug)
-				   echo "Error: File '$srcfile' could not be copied!<br />\n";
-				  return FALSE;
-				}
-			  }
-			}
-			else if(is_dir($srcfile))
-			{
-			  $state = rex_copyDir($srcfile, $dstfile, $startdir) && $state;
-			}
-		  }
-		}
-		closedir($curdir);
-	  }
-	  return $state;
-	}
+  function rex_copyDir($srcdir, $dstdir, $startdir = "")
+  {
+    global $REX;
+    
+    $debug = FALSE;
+    $state = TRUE;
+    
+    if(!is_dir($dstdir))
+    {
+    $dir = '';
+    foreach(explode(DIRECTORY_SEPARATOR, $dstdir) as $dirPart)
+    {
+      $dir .= $dirPart . DIRECTORY_SEPARATOR;
+      if(strpos($startdir,$dir) !== 0 && !is_dir($dir))
+      {
+      if($debug)
+        echo "Create dir '$dir'<br />\n";
+        
+      mkdir($dir);
+      chmod($dir, $REX['DIRPERM']);
+      }
+    }
+    }
+    
+    if($curdir = opendir($srcdir))
+    {
+    while($file = readdir($curdir))
+    {
+      if($file != '.' && $file != '..' && $file != '.svn')
+      {
+      $srcfile = $srcdir . DIRECTORY_SEPARATOR . $file;    
+      $dstfile = $dstdir . DIRECTORY_SEPARATOR . $file;    
+      if(is_file($srcfile))
+      {
+        $isNewer = TRUE;
+        if(is_file($dstfile))
+        {
+        $isNewer = (filemtime($srcfile) - filemtime($dstfile)) > 0;
+        }
+        
+        if($isNewer)
+        {
+        if($debug)
+          echo "Copying '$srcfile' to '$dstfile'...";
+        if(copy($srcfile, $dstfile))
+        {
+          touch($dstfile, filemtime($srcfile));
+          chmod($dstfile, $REX['FILEPERM']);
+          if($debug)
+          echo "OK<br />\n";
+        }
+        else
+        {
+          if($debug)
+           echo "Error: File '$srcfile' could not be copied!<br />\n";
+          return FALSE;
+        }
+        }
+      }
+      else if(is_dir($srcfile))
+      {
+        $state = rex_copyDir($srcfile, $dstfile, $startdir) && $state;
+      }
+      }
+    }
+    closedir($curdir);
+    }
+    return $state;
+  }
 } // End function_exists
 
 
@@ -383,7 +383,7 @@ jQuery(document).ready(function($) {';
         $configout[strlen($configout)-1] = ' ';
       }
 
-		$configout = tinymce_replace_vars($configout);
+    $configout = tinymce_replace_vars($configout);
 
       if ($sql->getValue('id') === '2') // default for class="tinyMCEEditor"
       {
@@ -524,6 +524,25 @@ global $REX;
 }
 } // End function_exists
 
+/**
+ * Bild chunked senden, um diverse probleme zu umgehen
+ */
+
+if(!function_exists('tiny_readfile_chunked')) {
+  function tiny_readfile_chunked ($filename) {
+    $chunksize = 1*(1024*1024); // how many bytes per chunk
+    $buffer = '';
+    $handle = fopen($filename, 'rb');
+    if ($handle === false) {
+      return false;
+    }
+    while (!feof($handle)) {
+      $buffer = fread($handle, $chunksize);
+      print $buffer;
+    }
+    return fclose($handle);
+  }
+}
 
 /**
  * Bild ausgeben
@@ -573,7 +592,7 @@ if (!function_exists('tinymce_generate_image'))
       } else {
           header("Content-type: " . $ctype);
           header("Content-Length: " . filesize($file));
-          readfile($file);
+          tiny_readfile_chunked($file);
           exit;
       }
     }
@@ -613,9 +632,9 @@ global $REX;
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="tinymce" value="true" /> <!-- inserted by TinyMCE -->' . "\n";
     $search[3] = 'page=' . $page;
-    $replace[3] = 'page=' . $page . '&amp;tinymce=true';	
+    $replace[3] = 'page=' . $page . '&amp;tinymce=true';  
     $search[4] = 'page=medienpool';
-    $replace[4] = 'page=medienpool&amp;tinymce=true';	
+    $replace[4] = 'page=medienpool&amp;tinymce=true'; 
     $search[5] = '<input type="hidden" name="page" value="medienpool" />';
     $replace[5] = $search[5] . "\n\n" . '<input type="hidden" name="tinymce" value="true" /> <!-- inserted by TinyMCE -->' . "\n";
   }
@@ -632,7 +651,7 @@ global $REX;
     $search[2] = '<input type="hidden" name="page" value="' . $page . '" />';
     $replace[2] = $search[2] . "\n\n" . '<input type="hidden" name="tinymce" value="true" /> <!-- inserted by TinyMCE -->' . "\n";
     $search[3] = 'page=' . $page;
-    $replace[3] = 'page=' . $page . '&amp;tinymce=true';	
+    $replace[3] = 'page=' . $page . '&amp;tinymce=true';  
   }
 
   // Alles ersetzen
