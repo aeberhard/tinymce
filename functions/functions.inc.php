@@ -576,6 +576,7 @@ if (!function_exists('tinymce_generate_image'))
           readfile($file);
           exit;
       }
+    }
   }
 } // End function_exists
 
