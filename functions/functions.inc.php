@@ -530,61 +530,53 @@ global $REX;
  */
 if (!function_exists('tinymce_generate_image'))
 {
-function tinymce_generate_image()
-{
-  global $REX;
-
-  $tinymceimg = rex_request('tinymceimg', 'string', '');
-  $file = $REX['MEDIAFOLDER'] . '/' . $tinymceimg;
-  if (file_exists($file))
+  function tinymce_generate_image()
   {
-    $lastModified = gmdate('r');
+    global $REX;
 
-    $file_extension = strtolower(substr(strrchr($tinymceimg, '.'), 1));
-    switch ($file_extension)
+    $tinymceimg = rex_request('tinymceimg', 'string', '');
+    $file = $REX['MEDIAFOLDER'] . '/' . $tinymceimg;
+
+    if (file_exists($file))
     {
-      case "gif": $ctype = "image/gif"; break;
-      case "png": $ctype = "image/png"; break;
-      case "jpeg": $ctype = "image/jpg"; break;
-      case "jpg": $ctype = "image/jpg"; break;
-    }
 
-    while (ob_get_level())
-      ob_end_clean();
+      $last_modified_time = filemtime($file);
+      $etag = md5_file($file);
+      $expires = 60*60*24*14;
 
-    if (function_exists('header_remove'))
-    {  
-      header_remove();
-    }
+      $file_extension = strtolower(substr(strrchr($tinymceimg, '.'), 1));
+      switch ($file_extension)
+      {
+        case "gif": $ctype = "image/gif"; break;
+        case "png": $ctype = "image/png"; break;
+        case "jpeg": $ctype = "image/jpg"; break;
+        case "jpg": $ctype = "image/jpg"; break;
+      }
 
-    header('Content-Type: ' . $ctype);
-    header('Content-Disposition: inline; filename="'. $tinymceimg .'"');
-    header('Last-Modified: ' . $lastModified);
-    //header('Content-Length: ' . $length);
+      while (ob_get_level())
+        ob_end_clean();
 
-    // caching clientseitig/proxyseitig erlauben
-    header('Cache-Control: public');
-    header("Pragma: public");
-    header("Expires: 0");
+      if (function_exists('header_remove'))
+      {  
+        header_remove();
+      }
 
-    if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == $lastModified)
-    {
-      header('HTTP/1.1 304 Not Modified');
-      exit();
-    }
+      header("Last-Modified: ".gmdate("D, d M Y H:i:s", $last_modified_time)." GMT");
+      header("Etag: \"$etag\"");
+      header("Pragma: public");
+      header("Cache-Control: maxage=".$expires);
+      header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
 
-    readfile($file);
+      if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || @trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) {
+          header("HTTP/1.1 304 Not Modified");
+          exit;
+      } else {
+          header("Content-type: " . $ctype);
+          header("Content-Length: " . filesize($file));
+          readfile($file);
+          exit;
+      }
   }
-  else
-  {
-    header('Cache-Control: false');
-    header('Content-Type: image/');
-    header('Content-Disposition: inline; filename=""');
-    header('HTTP/1.0 404 Not Found');
-    header("Status: 404 Not Found");
-  }
-  die;
-}
 } // End function_exists
 
 
