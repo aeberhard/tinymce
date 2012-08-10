@@ -528,15 +528,19 @@ global $REX;
  * Bild chunked senden, um diverse probleme zu umgehen
  */
 
-if(!function_exists('tiny_readfile_chunked')) {
-  function tiny_readfile_chunked ($filename) {
+if(!function_exists('tiny_readfile_chunked'))
+{
+  function tiny_readfile_chunked ($filename)
+  {
     $chunksize = 1*(1024*1024); // how many bytes per chunk
     $buffer = '';
     $handle = fopen($filename, 'rb');
-    if ($handle === false) {
+    if ($handle === false)
+    {
       return false;
     }
-    while (!feof($handle)) {
+    while (!feof($handle))
+    {
       $buffer = fread($handle, $chunksize);
       print $buffer;
     }
@@ -586,12 +590,16 @@ if (!function_exists('tinymce_generate_image'))
       header("Cache-Control: maxage=".$expires);
       header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
 
-      if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || @trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) {
+      if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || @trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag)
+      {
           header("HTTP/1.1 304 Not Modified");
           exit;
-      } else {
+      }
+      else
+      {
           header("Content-type: " . $ctype);
           header("Content-Length: " . filesize($file));
+          header('Content-Disposition: inline; filename="'. $tinymceimg .'"');          
           tiny_readfile_chunked($file);
           exit;
       }
