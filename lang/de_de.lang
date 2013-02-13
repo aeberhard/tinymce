@@ -3,11 +3,11 @@
 
 # Addon-Eintrag und Addon-Titel
 tinymce_menu_link = TinyMCE Editor
-tinymce_title = TinyMCE WYSIWYG Editor <span style="font-size:10px;">(Version 2.2)</span>
+tinymce_title = TinyMCE WYSIWYG Editor <span style="font-size:10px;">(Version 2.3)</span>
 
 # Versionen
-tinymce_version = 2.2
-tinymce_tiny_versinfo = TinyMCE jQuery package 3.5.6, <a href="http://www.tinymce.com/" onclick="window.open(this.href); return false;">http://www.tinymce.com/</a>
+tinymce_version = 2.3
+tinymce_tiny_versinfo = TinyMCE jQuery package 3.5.8, <a href="http://www.tinymce.com/" onclick="window.open(this.href); return false;">http://www.tinymce.com/</a>
 
 # Menüeinträge
 tinymce_menu_info = Erklärung
