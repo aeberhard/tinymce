@@ -9,6 +9,7 @@ function TinyMCE_FileBrowser(field_name, url, type, win)
 	if (type == 'image' || type == 'media')
 	{
 		nameurl = url.replace('%FRONTEND_FILE%?tinymceimg=', '');
+		nameurl = url.replace('files/', '');
 		if (nameurl != '')
 		{
 			nameurl = '&subpage=detail&file_name='+nameurl;
