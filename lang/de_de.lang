@@ -39,7 +39,7 @@ tinymce_fieldset = Editor-Profil bearbeiten
 tinymce_css_title = CSS für TinyMCE
 tinymce_css_text = CSS für Editor und Vorschau
 tinymce_css_infotitle = Hinweis
-tinymce_css_info = Die hier angegebenen CSS-Anweisungen können bei der Konfiguration über folgenden Parameter eingefügt werden:<br /><strong>content_css : 'index.php?tinymcecss=true'</strong><br /><br />Die Darstellung des TinyMCE-Editors und der TinyMCE-Vorschau können dadurch beeinflusst werden. Weitere Informationen finden sich in der TinyMCE-Dokumentation.
+tinymce_css_info = Die hier angegebenen CSS-Anweisungen können bei der Konfiguration über folgenden Parameter eingefügt werden:<br /><strong>content_css : 'index.php?tinymcecss=true'</strong><br /><br />Die Darstellung des TinyMCE-Editors und der TinyMCE-Vorschau können dadurch beeinflusst werden. Weitere Informationen finden sich in der TinyMCE-Dokumentation.<br /><br /><strong>F&uuml;r das Frontend müssen die entsprechenden CSS-Einträge in das eigene Frontend-CSS übernommen werden!</strong>
 
 # Fehler und Info-Meldungen
 tinymce_error_notwriteable = Konfigurationsdatei "{0}" ist nicht beschreibbar!
