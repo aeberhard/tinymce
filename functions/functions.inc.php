@@ -718,6 +718,15 @@ global $REX;
   $scriptout = str_replace('%MEDIAFOLDER%', $REX['MEDIAFOLDER'], $scriptout);
   $scriptout = str_replace('%FRONTEND_FILE%', $REX['FRONTEND_FILE'], $scriptout);
   $scriptout = str_replace('%HTTP_HOST%', $_SERVER['HTTP_HOST'], $scriptout);
+  if (isset($_SESSION['tinymce']['IMAGE_SRC']) and $_SESSION['tinymce']['IMAGE_SRC']<>'')
+  {
+    $scriptout = str_replace('%IMAGE_SRC%', $_SESSION['tinymce']['IMAGE_SRC'], $scriptout);
+	 unset($_SESSION['tinymce']['IMAGE_SRC']);
+  }
+  else
+  {
+	 $scriptout = str_replace('%IMAGE_SRC%', $REX['tinymce']['IMAGE_SRC'], $scriptout);
+  }	
   $scriptout = str_replace('%OPENER_INPUT_FIELD%', $oif, $scriptout);
   if ($REX['VERSION'] . $REX['SUBVERSION'] < '42')
   {

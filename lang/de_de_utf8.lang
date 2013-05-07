@@ -22,6 +22,9 @@ tinymce_active_fe = Frontend aktiv
 tinymce_config_excludecats = Bei folgenden Pages (Backend) bzw. Kategorien (Frontend) nicht ausführen
 tinymce_config_excludeids = Bei folgenden Subpages (Backend) bzw. Seiten (Frontend) nicht ausführen
 tinymce_config_csv = <em>(kommaseparierte Liste)</em>
+tinymce_config_imageparams = Bildparameter img-src
+tinymce_config_img = <strong>Beschreibung Bildparamter</strong><br /><br /><em>leer / keine Angabe</em><br />Bilder werden in der Form &lt;img src="<strong>../files/</strong><em>bildname</em>"&gt; eingefügt<br /><br /><em>%FRONTEND_FILE%?tinymceimg=</em><br />Bilder werden in der Form &lt;img src="<strong>index.php?tinymceimg=</strong><em>bildname</em>"&gt; eingefügt<br /><br /><em>%FRONTEND_FILE%?rex_img_type=ImgTypeName&amp;rex_img_file=</em><br />Bilder werden in der Form &lt;img src="<strong>index.php?rex_img_type=ImgTypeName&amp;rex_img_file=</strong><em>bildname</em>"&gt; eingefügt<br /><br /><em>%FRONTEND_FILE%?rex_resize=200a__</em><br />Bilder werden in der Form &lt;img src="<strong>index.php?rex_resize=200a__</strong><em>bildname</em>"&gt; eingefügt<br /><br />
+
 
 # Profil-Verwaltung
 tinymce_listtitle = Editor-Profile

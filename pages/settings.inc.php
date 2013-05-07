@@ -19,6 +19,7 @@ $active_be = rex_request('active_be', 'string');
 $active_fe = rex_request('active_fe', 'string');
 $excludecats = rex_request('excludecats', 'string');
 $excludeids = rex_request('excludeids', 'string');
+$imageparams = rex_request('imageparams', 'string');
 
 $config_file = $REX['INCLUDE_PATH'] . '/addons/tinymce/config.inc.php';
 
@@ -28,11 +29,13 @@ if ($func == 'update')
   $REX['ADDON']['tinymce']['frontend'] = $active_fe;
   $REX['ADDON']['tinymce']['excludecats'] = $excludecats;
   $REX['ADDON']['tinymce']['excludeids'] = $excludeids;
+  $REX['ADDON']['tinymce']['imageparams'] = $imageparams;
   $content = '
 $REX[\'ADDON\'][\'tinymce\'][\'backend\'] = \''.$active_be.'\';
 $REX[\'ADDON\'][\'tinymce\'][\'frontend\'] = \''.$active_fe.'\';
 $REX[\'ADDON\'][\'tinymce\'][\'excludecats\'] = \''.$excludecats.'\';
 $REX[\'ADDON\'][\'tinymce\'][\'excludeids\'] = \''.$excludeids.'\';
+$REX[\'ADDON\'][\'tinymce\'][\'imageparams\'] = \''.$imageparams.'\';
 ';
   if(rex_replace_dynamic_contents($config_file, $content) !== false)
     echo rex_info($I18N->msg('tinymce_config_saved'));
@@ -96,6 +99,19 @@ if ($REX['ADDON']['tinymce']['frontend'] == '1')
       </p>
     </div>
 
+    <div class="rex-form-row rex-form-element-v1">
+      <p class="rex-form-text">
+        <label for="imageparams"><?php echo $I18N->msg('tinymce_config_imageparams'); ?></label>
+        <input class="rex-form-text" type="text" id="imageparams" name="imageparams" value="<?php echo $REX['ADDON']['tinymce']['imageparams']; ?>" />
+      </p>
+    </div>
+
+    <div class="rex-addon-content">
+      <p class="rex-form-text">
+		  <?php echo $I18N->msg('tinymce_config_img'); ?>
+      </p>
+    </div>
+	 
     <div class="rex-form-row rex-form-element-v1">
       <p class="rex-form-submit">
         <input type="submit" class="rex-form-submit" name="sendit" value="<?php echo $I18N->msg('update'); ?>" />

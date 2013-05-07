@@ -69,9 +69,17 @@ if ($REX['REDAXO'])
 $REX['ADDON']['tinymce']['backend'] = '1';
 $REX['ADDON']['tinymce']['frontend'] = '1';
 $REX['ADDON']['tinymce']['excludecats'] = 'tinymce';
-$REX['ADDON']['tinymce']['excludeids'] = 'a356_ajax';
+$REX['ADDON']['tinymce']['excludeids'] = '';
+$REX['ADDON']['tinymce']['imageparams'] = '';
 // --- /DYN
 
+
+// Img-Source
+$REX['tinymce']['IMAGE_SRC'] = str_replace('%FRONTEND_FILE%', $REX['FRONTEND_FILE'], $REX['ADDON']['tinymce']['imageparams']);
+if (trim($REX['ADDON']['tinymce']['imageparams'])=='')
+{
+	$REX['tinymce']['IMAGE_SRC'] = $REX['HTDOCS_PATH'] . $REX['MEDIA_DIR'].'/';
+}
 
 // Include Functions
 include($REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/functions/functions.inc.php');

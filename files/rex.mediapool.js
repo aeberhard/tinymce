@@ -24,9 +24,9 @@ function TinyMCE_selectMedia(filename, alt)
 
 	if (type == 'image')
 	{
-		win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = '%FRONTEND_FILE%?tinymceimg=' + filename;
+		win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = '%IMAGE_SRC%' + filename;
 		if (win.ImageDialog.getImageData) win.ImageDialog.getImageData();
-		if (win.ImageDialog.showPreviewImage) win.ImageDialog.showPreviewImage('%FRONTEND_FILE%?tinymceimg=' + filename);
+		if (win.ImageDialog.showPreviewImage) win.ImageDialog.showPreviewImage('%IMAGE_SRC%' + filename);
 	}
 
 	if (type == 'media')

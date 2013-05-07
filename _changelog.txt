@@ -1,8 +1,11 @@
 Addon: TinyMCE Version 2.4
 
-Version 2.4 (2013-05-xx)
+Version 2.4 (2013-05-07)
   - Modul-Installation/Aktualisierung
-  
+  - Konfiguration erweitert um Bildparameter
+  - Anpassung der Einbindung von Bildern an den Bildparameter,
+    jetzt auch ImageResize + ImageManager möglich
+
 Version 2.3 (2013-02-13)
   - Update TinyMCE auf Version 3.5.8
 

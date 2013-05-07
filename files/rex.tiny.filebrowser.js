@@ -8,8 +8,12 @@ function TinyMCE_FileBrowser(field_name, url, type, win)
 
 	if (type == 'image' || type == 'media')
 	{
-		nameurl = url.replace('%FRONTEND_FILE%?tinymceimg=', '');
-		nameurl = url.replace('files/', '');
+		nameurl = url;
+		nameurl = nameurl.replace('%IMAGE_SRC%', '');
+		nameurl = nameurl.replace('../%MEDIAFOLDER%/', '');
+		nameurl = nameurl.replace('./%MEDIAFOLDER%/', '');
+		nameurl = nameurl.replace('/%MEDIAFOLDER%/', '');
+		nameurl = nameurl.replace('%MEDIAFOLDER%/', '');
 		if (nameurl != '')
 		{
 			nameurl = '&subpage=detail&file_name='+nameurl;
