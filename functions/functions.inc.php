@@ -383,7 +383,7 @@ jQuery(document).ready(function($) {';
         $configout[strlen($configout)-1] = ' ';
       }
 
-    $configout = tinymce_replace_vars($configout);
+      $configout = tinymce_replace_vars($configout);
 
       if ($sql->getValue('id') === '2') // default for class="tinyMCEEditor"
       {
@@ -715,13 +715,12 @@ global $REX;
   $scriptout = str_replace('%CLANG%', $REX['CUR_CLANG'], $scriptout);
   $scriptout = str_replace('%INCLUDE_PATH%', $REX['INCLUDE_PATH'], $scriptout);
   $scriptout = str_replace('%FRONTEND_PATH%', $REX['FRONTEND_PATH'], $scriptout);
-  $scriptout = str_replace('%MEDIAFOLDER%', $REX['MEDIAFOLDER'], $scriptout);
+  $scriptout = str_replace('%MEDIAFOLDER%', $REX['MEDIA_DIR'], $scriptout);
   $scriptout = str_replace('%FRONTEND_FILE%', $REX['FRONTEND_FILE'], $scriptout);
   $scriptout = str_replace('%HTTP_HOST%', $_SERVER['HTTP_HOST'], $scriptout);
-  if (isset($_SESSION['tinymce']['IMAGE_SRC']) and $_SESSION['tinymce']['IMAGE_SRC']<>'')
+  if (isset($_SESSION['tinymce']['IMAGE_SRC']) and trim($_SESSION['tinymce']['IMAGE_SRC'])<>'')
   {
     $scriptout = str_replace('%IMAGE_SRC%', $_SESSION['tinymce']['IMAGE_SRC'], $scriptout);
-	 unset($_SESSION['tinymce']['IMAGE_SRC']);
   }
   else
   {

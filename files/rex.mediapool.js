@@ -31,7 +31,7 @@ function TinyMCE_selectMedia(filename, alt)
 
 	if (type == 'media')
 	{
-		win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = 'files/' + filename;	
+		win.document.getElementById(tinyMCEPopup.getWindowArg('input')).value = '%MEDIAFOLDER%/' + filename;	
 	}
 
 	if (type == 'media' && win.generatePreview)
