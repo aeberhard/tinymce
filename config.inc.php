@@ -42,7 +42,7 @@ if ($REX['REDAXO'])
     if ($REX['VERSION'] . $REX['SUBVERSION'] < '42')
     {
       $I18N->locale = $REX['LANG'];
-      $I18N->filename = $REX['INCLUDE_PATH'] . '/addons/tinymce/lang/'. $REX['LANG'] . ".lang";
+      $I18N->filename = $REX['INCLUDE_PATH'] . '/addons/' . $mypage . '/lang/'. $REX['LANG'] . ".lang";
       $I18N->loadTexts();
     }
     else
