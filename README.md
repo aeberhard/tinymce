@@ -1,8 +1,16 @@
-TinyMCE-Addon fuer REDAXO 
+TinyMCE-Addon für REDAXO 4
+==========================
 
 TinyMCE jQuery package 3.5.8, http://www.tinymce.com/
 
 Das Addon bindet den WYSIWYG-Editor TinyMCE im Backend und bei Bedarf auch im Frontend ein. 
+
+
+Changelog
+---------
+
+siehe [CHANGELOG.md](CHANGELOG.md)
+
 
 Download
 --------
