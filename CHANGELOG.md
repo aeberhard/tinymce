@@ -1,5 +1,9 @@
-Changelog TinyMCE-Addon Version 2.4
-===================================
+Changelog TinyMCE-Addon Version 2.4.1
+=====================================
+
+### Version 2.4.1 (2013-10-08)
+
+* Behebung Sicherheitslücke in functions.inc.php tinymce_generate_image()
 
 ### Version 2.4 (2013-05-07)
 
