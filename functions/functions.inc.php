@@ -558,7 +558,8 @@ if (!function_exists('tinymce_generate_image'))
     global $REX;
 
     $tinymceimg = rex_request('tinymceimg', 'string', '');
-    $tinymceimg = str_replace(array('..', '/', '\\'), '', $tinymceimg);
+    //$tinymceimg = str_replace(array('..', '/', '\\'), '', $tinymceimg);
+    $tinymceimg = basename($tinymceimg);
     $file = $REX['MEDIAFOLDER'] . '/' . $tinymceimg;
 
     if (file_exists($file))
