@@ -1,5 +1,9 @@
-Changelog TinyMCE-Addon Version 2.4.1
-=====================================
+Changelog TinyMCE-Addon Version 2.5
+===================================
+
+### Version 2.5 (2013-10-26)
+
+* Update TinyMCE auf Version 3.5.10
 
 ### Version 2.4.1 (2013-10-08)
 

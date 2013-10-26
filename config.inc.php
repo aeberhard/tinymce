@@ -13,7 +13,7 @@
 $mypage = 'tinymce';
 
 // Versionsnummer, auch in den Language-Files ändern
-$REX['ADDON']['version'][$mypage] = '2.4.1';
+$REX['ADDON']['version'][$mypage] = '2.5';
 
 // Fix für REDAXO < 4.2.x
 if (!isset($REX['FRONTEND_FILE'])) 
