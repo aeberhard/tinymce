@@ -1,0 +1,75 @@
+# Addon: TinyMCE
+#---------------
+
+# Addon-Eintrag und Addon-Titel
+tinymce_menu_link = TinyMCE Editor
+tinymce_title = TinyMCE WYSIWYG Editor <span style="font-size:10px;">(Version 2.5)</span>
+
+# Versionen
+tinymce_version = 2.5
+tinymce_tiny_versinfo = TinyMCE jQuery package 3.5.10, <a href="http://www.tinymce.com/" onclick="window.open(this.href); return false;">http://www.tinymce.com/</a>
+
+# Menüeinträge
+tinymce_menu_info = Explanation
+tinymce_menu_settings = Settings
+tinymce_menu_profiles = Editor-Profiles
+tinymce_menu_css = CSS for TinyMCE
+
+# Konfiguration
+tinymce_config_title = TinyMCE-Configuration
+tinymce_active_be = Backend active
+tinymce_active_fe = Frontend active
+tinymce_config_excludecats = Don't execute on these pages (Backend) or categories (Frontend)
+tinymce_config_excludeids = Don't execute on these subpages (Backend) or pages (Frontend
+tinymce_config_csv = <em>(comma-separated list)</em>
+tinymce_config_imageparams = image parameters img-src
+tinymce_config_img = <strong>Description image parameters</strong><br /><br /><em>empty / not specified</em><br />Images will be inserted like this: &lt;img src="<strong>../files/</strong><em>image name</em>"&gt;<br /><br /><em>%FRONTEND_FILE%?tinymceimg=</em><br />Images will be inserted like this: &lt;img src="<strong>index.php?tinymceimg=</strong><em>image name</em>"&gt;<br /><br /><em>%FRONTEND_FILE%?rex_img_type=ImgTypeName&amp;rex_img_file=</em><br />Images will be inserted like this: &lt;img src="<strong>index.php?rex_img_type=ImgTypeName&amp;rex_img_file=</strong><em>bildname</em>"&gt;<br /><br /><em>%FRONTEND_FILE%?rex_resize=200a__</em><br />Images will be inserted like this &lt;img src="<strong>index.php?rex_resize=200a__</strong><em>bildname</em>"&gt;<br /><br />
+
+
+# Profil-Verwaltung
+tinymce_listtitle = Editor-Profile
+tinymce_listsummary = This table lists all defined editor profiles
+tinymce_addentry = create editor profile
+tinymce_name = Name
+tinymce_description = Description
+tinymce_configuration = TinyMCE Configuration
+tinymce_func = Funktions
+tinymce_delentry = delete
+tinymce_back = back to overview
+tinymce_fieldset = edit editor profile
+
+# CSS-Verwaltung
+tinymce_css_title = CSS for TinyMCE
+tinymce_css_text = CSS for Editor and Preview
+tinymce_css_infotitle = Info
+tinymce_css_info = The CSS instructions given here may be included in the configuration using the following parameters:<br /><strong>content_css : 'index.php?tinymcecss=true'</strong><br /><br />That way the presentation of the TinyMCE editors and the TinyMCE preview can be influenced. More information can be found in the TinyMCE documentation.<br /><br /><strong>For styling the frontend page the corresponding CSS entries have to be included in your own CSS file styling your page!</strong>
+
+# Fehler und Info-Meldungen
+tinymce_error_notwriteable = Config file "{0}" is not writable!
+tinymce_config_saved = Configuration has been updated!
+tinymce_config_not_saved = Configuration could not be saved!
+tinymce_profile_deleted = Editor profile has been deleted!
+tinymce_profile_notdeleted = Editor profile with ID=2 (default) may not be deleted!
+tinymce_profiles_nodata = No editor profiles available!
+tinymce_profiles_noname = No name given!
+tinymce_profiles_nameinvalid = Name contains invalid characters (a-z and 0-9 only)!
+tinymce_profiles_nodesc = No description given!
+tinymce_profiles_noconfig = No TinyMCE configuration specified!
+tinymce_css_saved = CSS has been updated!
+tinymce_css_not_saved = CSS could not be saved!
+
+# Erklärung / Hilfe / Module
+tinymce_shorthelp = The AddOn includes the WYSIWYG editor TinyMCE into the backend and if necessary also in the frontend.
+tinymce_longhelp = <br />Depending on the <a href="index.php?page=tinymce&amp;subpage=settings">configuration</a> of the TinyMCE addons the TinyMCE WYSIWYG editor for text areas is automatically included in the backend and frontend.<br /><br />Textareas bearing the class <em>tinyMCEEditor</em> are automatically converted from a normal text area to a WYSIWYG editor.<br />e.g.: &lt;textarea <strong>class="tinyMCEEditor"</strong>&gt;&lt;/textarea&gt;<br /><br />In the backend various <a href="index.php?page=tinymce&amp;subpage=profiles">editor profiles</a> with different configuration settings can be created. These editor profiles can be used by appending the profile name to the class.<br />e.g.: &lt;textarea <strong>class="tinyMCEEditor-simple"</strong>&gt;&lt;/textarea&gt;
+tinymce_nodel_notice = <strong>NOTE:</strong><br />The entry with <strong>ID=2</strong> and name <strong>default</strong> may not be deleted!
+
+tinymce_title_module = Example module
+tinymce_title_module_input = Code example for module input
+tinymce_help_module_input = To convert a text area to a WYSIWYG editor with TinyMCE it's sufficient to assign the class <strong>tinyMCEEditor</strong> to the text area.<br />By appending an existing <a href="index.php?page=tinymce&amp;subpage=profiles">editor profile name</a> to the class TinyMCE can be customized separately for each text area.<br />e.g.: &lt;textarea <strong>class="tinyMCEEditor-simple"</strong>&gt;&lt;/textarea&gt;
+tinymce_title_module_output = Code example for module output
+tinymce_help_module_output = In the module output it's enough to output the variable <strong>REX_HTML_VALUE[1]</strong>.<br />To avoid an empty output there's an if-statement in the example.
+
+tinymce_modul_install = <a href="index.php?page=tinymce&amp;subpage=&amp;install=1">Install module "{0}"</a>
+tinymce_modul_added = Module "{0}" has been created!
+tinymce_modul_update = <a href="index.php?page=tinymce&amp;subpage=&amp;install=1&amp;modul_id={1}">Update existing module "{0}"</a>
+tinymce_modul_updated = Module "{0}" has been updated!
