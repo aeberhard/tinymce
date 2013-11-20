@@ -86,7 +86,7 @@ if ($REX['ADDON']['tinymce']['frontend'] == '1')
     <div class="rex-form-row rex-form-element-v1">
       <p class="rex-form-text">
         <label for="excludecats"><?php echo $I18N->msg('tinymce_config_excludecats'); ?></label>
-        <input class="rex-form-text" type="text" id="excludecats" name="excludecats" value="<?php echo $REX['ADDON']['tinymce']['excludecats']; ?>" />
+        <input class="rex-form-text" type="text" id="excludecats" name="excludecats" value="<?php echo htmlspecialchars($REX['ADDON']['tinymce']['excludecats']); ?>" />
         <br /><?php echo $I18N->msg('tinymce_config_csv'); ?>
       </p>
     </div>
@@ -94,7 +94,7 @@ if ($REX['ADDON']['tinymce']['frontend'] == '1')
     <div class="rex-form-row rex-form-element-v1">
       <p class="rex-form-text">
         <label for="excludeids"><?php echo $I18N->msg('tinymce_config_excludeids'); ?></label>
-        <input class="rex-form-text" type="text" id="excludeids" name="excludeids" value="<?php echo $REX['ADDON']['tinymce']['excludeids']; ?>" />
+        <input class="rex-form-text" type="text" id="excludeids" name="excludeids" value="<?php echo htmlspecialchars($REX['ADDON']['tinymce']['excludeids']); ?>" />
         <br /><?php echo $I18N->msg('tinymce_config_csv'); ?>
       </p>
     </div>
@@ -102,7 +102,7 @@ if ($REX['ADDON']['tinymce']['frontend'] == '1')
     <div class="rex-form-row rex-form-element-v1">
       <p class="rex-form-text">
         <label for="imageparams"><?php echo $I18N->msg('tinymce_config_imageparams'); ?></label>
-        <input class="rex-form-text" type="text" id="imageparams" name="imageparams" value="<?php echo $REX['ADDON']['tinymce']['imageparams']; ?>" />
+        <input class="rex-form-text" type="text" id="imageparams" name="imageparams" value="<?php echo htmlspecialchars($REX['ADDON']['tinymce']['imageparams']); ?>" />
       </p>
     </div>
 
@@ -111,7 +111,7 @@ if ($REX['ADDON']['tinymce']['frontend'] == '1')
 		  <?php echo $I18N->msg('tinymce_config_img'); ?>
       </p>
     </div>
-	 
+
     <div class="rex-form-row rex-form-element-v1">
       <p class="rex-form-submit">
         <input type="submit" class="rex-form-submit" name="sendit" value="<?php echo $I18N->msg('update'); ?>" />
